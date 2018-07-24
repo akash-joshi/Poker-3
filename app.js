@@ -10,23 +10,8 @@ var express = require('express'),
 	Table = require('./poker_modules/table'),
 	Player = require('./poker_modules/player');
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-// create "middleware"
-
-//app.use(express.favicon());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
-
-//app.use(express.logger('dev'));
 app.use(morgan('combined'))
-
-//app.use(express.bodyParser());
-//https://groups.google.com/forum/#!topic/locomotivejs/IJhJEX3rwPc
-//app.use(express.json());
-//app.use(express.urlencoded());
-
-//app.use(app.router);
 app.use(lessMiddleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -47,7 +32,7 @@ console.log('Listening on port ' + port);
 
 // The lobby
 app.get('/', function( req, res ) {
-	res.render('index');
+	res.sendFile(__dirname+"/views/index.html");
 });
 
 // The lobby data (the array of tables and their data)
